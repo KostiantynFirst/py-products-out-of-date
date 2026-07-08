@@ -61,4 +61,3 @@ def test_expiration_day_yesterday_outdated(mocked_datetime: MagicMock) -> None:
         }
     ]
     assert outdated_products(products) == ["turkey"]
-
