@@ -48,3 +48,17 @@ def test_empty_list_of_products(mocked_datetime: MagicMock) -> None:
     mocked_datetime.today.return_value = date(2022, 2, 10)
     products = []
     assert outdated_products(products) == []
+
+
+@mock.patch("app.main.datetime.date")
+def test_expiration_day_yesterday_outdated(mocked_datetime: MagicMock) -> None:
+    mocked_datetime.today.return_value = date(2022, 2, 10)
+    products = [
+        {
+            "name": "turkey",
+            "expiration_date": date(2022, 2, 9),
+            "price": 120
+        }
+    ]
+    assert outdated_products(products) == ["turkey"]
+
